@@ -4,6 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="org.amos.ioc.overview.domain.User"/>
+    <bean id="user" class="org.amos.ioc.overview.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="amos"/>
+    </bean>
 
+    <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName" value="user"/>
+    </bean>
+
+    <bean name="superUser" class="org.amos.ioc.overview.domain.SuperUser" parent="user" primary="true">
+        <property name="address" value="广州" />
+    </bean>
 </beans>
